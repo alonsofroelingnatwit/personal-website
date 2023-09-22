@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useState } from 'react';
 
 export default function Home() {
   return (
-    <main className='relative h-[dvh] w-screen overflow-x-hidden'>
+    <main className='relative h-[100dvh] w-screen overflow-x-hidden'>
       <Image className='absolute w-full h-full' src="/bg-img.jpg" alt='bg-img' layout='fill' objectFit='cover' />
 
       <div className='absolute left-1/2 -translate-x-1/2 w-full h-full max-w-2xl mx-auto'>
