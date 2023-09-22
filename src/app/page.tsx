@@ -28,7 +28,7 @@ export default function Home() {
             } />
             <Notification title='GitHub' link='https://github.com/alonsofroelingnatwit' icon='/github.png' description={<>Check out projects on my GitHub</>} />
             <Notification title='LinkedIn' link='https://www.linkedin.com/in/nalonsofroeling/' icon='/linkedin.png' description={<>Connect with me on LinkedIn</>} />
-            <Notification title='Resume' link='#' icon='/resume.png' description={<>View or Download my resume</>} />
+            <Notification title='Resume' link='/Resume.pdf' icon='/resume.png' description={<>View or Download my resume</>} />
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@ type NotificationProps = {
 }
 function Notification(props:NotificationProps) {
   return(
-    <Link href={props.link}>
+    <Link href={props.link} target='_blank'>
       <div className='flex w-full items-start bg-zinc-800/40 rounded-[1.75rem] backdrop-blur-md p-4'>
         <Image src={props.icon} alt='profile' width={75} height={75}  className='rounded-full md:h-[75px] md:w-[75px] h-[44px] w-[44px]' />
         <div className='flex flex-col w-full pl-2'>
