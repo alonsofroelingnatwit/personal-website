@@ -1,5 +1,6 @@
 "use client";
 import Image from 'next/image'
+import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';
 
 export default function Home() {
@@ -25,8 +26,8 @@ export default function Home() {
               I have created a few websites and web apps. Very interested in AI, VR, and AR.
                     </>
             } />
-            <Notification title='GitHub' link='#' icon='/github.png' description={<>Check out projects on my GitHub</>} />
-            <Notification title='LinkedIn' link='#' icon='/linkedin.png' description={<>Connect with me on LinkedIn</>} />
+            <Notification title='GitHub' link='https://github.com/alonsofroelingnatwit' icon='/github.png' description={<>Check out projects on my GitHub</>} />
+            <Notification title='LinkedIn' link='https://www.linkedin.com/in/nalonsofroeling/' icon='/linkedin.png' description={<>Connect with me on LinkedIn</>} />
             <Notification title='Resume' link='#' icon='/resume.png' description={<>View or Download my resume</>} />
           </div>
         </div>
@@ -86,28 +87,23 @@ type NotificationProps = {
 }
 function Notification(props:NotificationProps) {
   return(
-    <div className='flex w-full items-start bg-zinc-800/40 rounded-[1.75rem] backdrop-blur-md p-4'>
-      <Image src={props.icon} alt='profile' width={75} height={75}  className='rounded-full md:h-[75px] md:w-[75px] h-[44px] w-[44px]' />
-      <div className='flex flex-col w-full pl-2'>
-        <div className='flex w-full justify-between items-center md:p-2 px-2'>
-          <p className='md:text-xl text-base leading-tight font-semibold'>
-            {props.title}
-          </p>
-          <p className='md:text-sm text-xs px-2 text-zinc-300'>
-            now
+    <Link href={props.link}>
+      <div className='flex w-full items-start bg-zinc-800/40 rounded-[1.75rem] backdrop-blur-md p-4'>
+        <Image src={props.icon} alt='profile' width={75} height={75}  className='rounded-full md:h-[75px] md:w-[75px] h-[44px] w-[44px]' />
+        <div className='flex flex-col w-full pl-2'>
+          <div className='flex w-full justify-between items-center md:p-2 px-2'>
+            <p className='md:text-xl text-base leading-tight font-semibold'>
+              {props.title}
+            </p>
+            <p className='md:text-sm text-xs px-2 text-zinc-300'>
+              now
+            </p>
+          </div>
+          <p className='px-2 md:text-xl text-base font-light'>
+            {props.description}
           </p>
         </div>
-        <p className='px-2 md:text-xl text-base font-light'>
-          {props.description}
-        {/* Fullstack developer studying Computer Science and Minor in Applied Math.
-        <br/>
-        Playing golf in the athletic golf team at Wentworth Institute of Technology.
-        <br/>
-        Surfing whenever I have time.
-        <br/>
-        I have created a few websites and web apps. Very interested in AI, VR, and AR. */}
-        </p>
       </div>
-    </div>
+    </Link>
   )
 }
