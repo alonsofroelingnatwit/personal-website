@@ -5,9 +5,13 @@ import { ReactNode, useEffect, useState } from 'react';
 
 export default function Home() {
   return (
-    <main className='relative h-[100dvh] w-screen overflow-x-hidden'>
-      <Image className='absolute w-full h-full' src="/bg-img.jpg" alt='bg-img' layout='fill' objectFit='cover' />
-
+    <main className='relative h-[100dvh] w-screen overflow-x-hidden'
+    style={{ 
+    backgroundImage: `url(/bg-img.jpg)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+    }}>
       <div className='absolute left-1/2 -translate-x-1/2 w-full h-full max-w-2xl mx-auto'>
         <div className='flex flex-col w-full h-full items-center justify-between p-4'>
           <div className='flex flex-col items-center w-full'>
