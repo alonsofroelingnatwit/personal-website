@@ -1,25 +1,26 @@
 "use client";
+import { delay, motion } from 'framer-motion';
 import Image from 'next/image'
 import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';
 
 export default function Home() {
   return (
-    <main className='relative h-[100dvh] w-screen overflow-x-hidden'
+    <main className='relative h-[100svh] w-screen overflow-x-hidden'
     style={{ 
     backgroundImage: `url(/bg-img.jpg)`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat'
     }}>
-      <div className='absolute left-1/2 -translate-x-1/2 w-full h-full max-w-2xl mx-auto'>
+      <div className='w-full h-full max-w-2xl mx-auto'>
         <div className='flex flex-col w-full h-full items-center justify-between p-4'>
           <div className='flex flex-col items-center w-full'>
             <FullDate />
             <CurrentTime />
           </div>
-          <div className='flex flex-col gap-2 w-full'>
-            <Notification title='Nicolas Alonso Froeling' link='#' icon='/profile-img.JPG' description={
+          <div className='flex flex-1 justify-end flex-col gap-2 w-full'>
+            <Notification title='Nicolas Alonso Froeling' icon='/profile-img.JPG' delay={0.5} description={
               <>
               Fullstack developer studying Computer Science and Minor in Applied Math.
               <br/>
@@ -30,9 +31,9 @@ export default function Home() {
               I have created a few websites and web apps. Very interested in AI, VR, and AR.
                     </>
             } />
-            <Notification title='GitHub' link='https://github.com/alonsofroelingnatwit' icon='/github.png' description={<>Check out projects on my GitHub</>} />
-            <Notification title='LinkedIn' link='https://www.linkedin.com/in/nalonsofroeling/' icon='/linkedin.png' description={<>Connect with me on LinkedIn</>} />
-            <Notification title='Resume' link='/Resume.pdf' icon='/resume.png' description={<>View or Download my resume</>} />
+            <Notification title='GitHub' link='https://github.com/alonsofroelingnatwit' delay={1} icon='/github.png' description={<>Check out projects on my GitHub</>} />
+            <Notification title='LinkedIn' link='https://www.linkedin.com/in/nalonsofroeling/' delay={1.5} icon='/linkedin.png' description={<>Connect with me on LinkedIn</>} />
+            <Notification title='Resume' link='/Resume.pdf' icon='/resume.png' delay={2} description={<>View or Download my resume</>} />
           </div>
         </div>
       </div>
@@ -49,7 +50,7 @@ function FullDate() {
   const month = months[date.getMonth()];
   const day = date.getDate();
   return (
-    <p className='md:text-xl text-lg font-semibold md:pt-20 pt-8'>{`${weekDay}, ${month} ${day}`}</p>
+    <p className='md:text-xl text-lg font-semibold pt-8'>{`${weekDay}, ${month} ${day}`}</p>
   );
 }
 
@@ -84,18 +85,22 @@ function formatTime(date:any) {
 }
 
 type NotificationProps = {
-  link: string;
+  link?: string;
   title: string;
   description: ReactNode;
   icon: string;
+  delay:number;
 }
 function Notification(props:NotificationProps) {
   return(
+    <motion.div initial={{opacity:0, height:0}} animate={{opacity:1, height:"auto"}} transition={{delay:props.delay, ease:"easeIn"}}>
+      {props.link ? (
+
     <Link href={props.link} target='_blank'>
-      <div className='flex w-full items-start bg-zinc-800/40 rounded-[1.75rem] backdrop-blur-md p-4'>
-        <Image src={props.icon} alt='profile' width={75} height={75}  className='rounded-full md:h-[75px] md:w-[75px] h-[44px] w-[44px]' />
+      <div className='flex w-full justify-center items-start bg-zinc-800/40 rounded-[1.75rem] backdrop-blur-md p-4'>
+        <Image src={props.icon} alt='profile' width={75} height={75}  className='rounded-full md:h-[64px] md:w-[64px] h-[44px] w-[44px]' />
         <div className='flex flex-col w-full pl-2'>
-          <div className='flex w-full justify-between items-center md:p-2 px-2'>
+          <div className='flex w-full justify-between items-center px-2'>
             <p className='md:text-xl text-base leading-tight font-semibold'>
               {props.title}
             </p>
@@ -109,5 +114,24 @@ function Notification(props:NotificationProps) {
         </div>
       </div>
     </Link>
+      ):(
+      <div className='flex w-full justify-center items-start bg-zinc-800/40 rounded-[1.75rem] backdrop-blur-md p-4'>
+        <Image src={props.icon} alt='profile' width={75} height={75}  className='rounded-full md:h-[64px] md:w-[64px] h-[44px] w-[44px]' />
+        <div className='flex flex-col w-full pl-2'>
+          <div className='flex w-full justify-between items-center px-2'>
+            <p className='md:text-xl text-base leading-tight font-semibold'>
+              {props.title}
+            </p>
+            <p className='md:text-sm text-xs px-2 text-zinc-300'>
+              now
+            </p>
+          </div>
+          <p className='px-2 md:text-xl text-base font-light'>
+            {props.description}
+          </p>
+        </div>
+      </div>)
+    }
+    </motion.div>
   )
 }
