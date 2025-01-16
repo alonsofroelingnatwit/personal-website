@@ -42,7 +42,7 @@ export default function Home() {
             />
             <Notification
               title="GitHub"
-              link="https://github.com/alonsofroelingnatwit"
+              link="https://github.com/FroelingDev"
               delay={1}
               icon="/github.png"
               description={<>Check out projects on my GitHub</>}
